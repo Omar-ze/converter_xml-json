@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="mainContainer" xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.demo.controleur.MainController">
+
+    <top>
+        <VBox spacing="10" style="-fx-background-color: linear-gradient(to right, #2c3e50, #3498db); -fx-padding: 20;">
+            <Label text="🔄 XML ↔ JSON Converter"
+                   style="-fx-text-fill: white; -fx-font-size: 28px; -fx-font-weight: bold;"/>
+            <Label text="Projet Java - Conversion avec/sans API"
+                   style="-fx-text-fill: #ecf0f1; -fx-font-size: 16px;"/>
+            <Label text="Deux méthodes: Avec API (Jackson) et Sans API (Manuelle)"
+                   style="-fx-text-fill: #bdc3c7; -fx-font-size: 14px;"/>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="15" style="-fx-padding: 20;">
+            <!-- Section Entrée -->
+            <VBox spacing="5">
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="📥 Entrée (XML ou JSON):"
+                           style="-fx-font-weight: bold; -fx-font-size: 16px;"/>
+                    <Label fx:id="charCountLabel" text="Caractères: 0"
+                           style="-fx-text-fill: #7f8c8d;"/>
+                </HBox>
+                <TextArea fx:id="inputTextArea"
+                          promptText="Collez votre XML ou JSON ici... Exemples: &lt;person&gt;... ou {&quot;person&quot;:...}"
+                          style="-fx-font-family: 'Consolas', 'Monaco', monospace; -fx-font-size: 13px;"
+                          wrapText="true"
+                          prefRowCount="10"/>
+            </VBox>
+
+            <!-- Section Contrôles -->
+            <VBox spacing="10" style="-fx-padding: 10; -fx-background-color: #f8f9fa; -fx-border-radius: 5; -fx-background-radius: 5;">
+                <HBox spacing="15" alignment="CENTER_LEFT">
+                    <Label text="Méthode de conversion:" style="-fx-font-weight: bold;"/>
+                    <ComboBox fx:id="methodComboBox" prefWidth="350"/>
+                    <ProgressIndicator fx:id="progressIndicator" prefWidth="30" prefHeight="30" visible="false"/>
+                </HBox>
+
+                <HBox spacing="10" alignment="CENTER">
+                    <Button fx:id="validateBtn" text="🔍 Valider"
+                            onAction="#handleValidateInput"
+                            style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 15;"/>
+                    <Button fx:id="convertToJsonBtn" text="🔄 XML → JSON"
+                            onAction="#handleConvertToJson"
+                            style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 15;"/>
+                    <Button fx:id="convertToXmlBtn" text="🔄 JSON → XML"
+                            onAction="#handleConvertToXml"
+                            style="-fx-background-color: #9b59b6; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 15;"/>
+                </HBox>
+            </VBox>
+
+            <!-- Section Sortie -->
+            <VBox spacing="5">
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="📤 Résultat:"
+                           style="-fx-font-weight: bold; -fx-font-size: 16px;"/>
+                    <Label fx:id="statusLabel" text="Prêt"
+                           style="-fx-text-fill: #3498db; -fx-font-weight: bold;"/>
+                </HBox>
+                <TextArea fx:id="outputTextArea"
+                          editable="false"
+                          style="-fx-font-family: 'Consolas', 'Monaco', monospace; -fx-font-size: 13px; -fx-background-color: #f8f9fa;"
+                          wrapText="true"
+                          prefRowCount="10"/>
+            </VBox>
+        </VBox>
+    </center>
+
+    <bottom>
+        <VBox spacing="10" style="-fx-padding: 15; -fx-background-color: #ecf0f1;">
+            <HBox spacing="10" alignment="CENTER">
+                <Button fx:id="loadExampleBtn" text="📋 Exemples"
+                        onAction="#handleLoadExample"
+                        style="-fx-background-color: #1abc9c; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                <Button fx:id="loadFileBtn" text="📂 Charger Fichier"
+                        onAction="#handleLoadFile"
+                        style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                <Button fx:id="clearBtn" text="🗑️ Effacer Tout"
+                        onAction="#handleClear"
+                        style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                <Button fx:id="copyBtn" text="📋 Copier Résultat"
+                        onAction="#handleCopy"
+                        style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                <Button fx:id="saveBtn" text="💾 Enregistrer"
+                        onAction="#handleSave"
+                        style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            </HBox>
+
+            <HBox spacing="10" alignment="CENTER">
+                <Label text="Projet JavaFX - Conversion XML/JSON - Deux méthodes implémentées"
+                       style="-fx-text-fill: #7f8c8d; -fx-font-size: 12px;"/>
+            </HBox>
+        </VBox>
+    </bottom>
+
+</BorderPane>
